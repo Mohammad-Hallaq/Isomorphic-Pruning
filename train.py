@@ -307,7 +307,7 @@ def main(args):
     print("Creating model")
     if os.path.isfile(args.model):
         print(f"Loading pruned model from {args.model}")
-        model = torch.load(args.model, map_location='cpu') #torchvision.models.get_model(args.model, weights=args.weights, num_classes=num_classes)
+        model = torch.load(args.model, map_location='cpu', weights_only=False) #torchvision.models.get_model(args.model, weights=args.weights, num_classes=num_classes)
         if isinstance(model, dict):
             model = model['model']
     elif args.is_huggingface:
@@ -424,7 +424,7 @@ def main(args):
 
     if args.resume:
         print("loading checkpoint")
-        checkpoint = torch.load(args.resume, map_location="cpu")
+        checkpoint = torch.load(args.resume, map_location="cpu", weights_only=False)
         if isinstance(checkpoint["model"], torch.nn.Module):
             model_without_ddp.load_state_dict( checkpoint["model"].state_dict() )
         else:

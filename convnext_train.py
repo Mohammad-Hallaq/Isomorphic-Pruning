@@ -546,7 +546,7 @@ def main():
         in_chans = args.input_size[0]
 
     if args.pruned_model is not None:
-        loaded = torch.load(args.pruned_model, map_location='cpu')
+        loaded = torch.load(args.pruned_model, map_location='cpu', weights_only=False)
         if isinstance(loaded, dict):
             if 'model' in loaded:
                 model = loaded['model']

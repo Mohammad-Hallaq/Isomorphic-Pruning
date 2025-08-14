@@ -83,7 +83,7 @@ def main():
     
     if os.path.isfile(args.model):
         print("Loading model %s..."%args.model)
-        state = torch.load(args.model, map_location='cpu')
+        state = torch.load(args.model, map_location='cpu', weights_only = False)
         if isinstance(state, dict):
             if 'model' in state:
                 model = state['model']
